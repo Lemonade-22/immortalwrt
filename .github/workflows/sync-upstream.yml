@@ -24,26 +24,27 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Sync VIKINGYFY main
+      - name: Sync VIKINGYFY owrt
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/VIKINGYFY/immortalwrt.git
-          git fetch upstream main
+          git fetch upstream owrt
 
-          # Root README is an upstream-owned file: always mirror it first.
-          git restore --source=upstream/main -- README.md
+          # The owrt branch is the upstream multi-platform branch.
+          # Root README is upstream-owned: always mirror upstream/owrt.
+          git restore --source=upstream/owrt -- README.md
           if ! git diff --quiet -- README.md; then
             git add README.md
-            git commit -m "chore: sync root README from upstream"
+            git commit -m "chore: sync root README from upstream/owrt"
           fi
 
-          if git merge-base --is-ancestor upstream/main HEAD; then
-            echo "Already up to date with upstream/main."
+          if git merge-base --is-ancestor upstream/owrt HEAD; then
+            echo "Already up to date with upstream/owrt."
           else
-            git merge --no-edit upstream/main
+            git merge --no-edit upstream/owrt
           fi
 
           git push origin HEAD:main
