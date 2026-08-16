@@ -12,7 +12,7 @@ mediatek_setup_interfaces()
 	buffalo,wsr-6000ax8|\
 	cmcc,rax3000m|\
 	cmcc,rax3000me|\
-	h3c,magic-nx30-pro|\
+	h3c,magic-nx30-pro-ubootmod|\
 	imou,hx21|\
 	konka,komi-a31|\
 	netis,nx30v2|\
@@ -31,15 +31,11 @@ mediatek_setup_interfaces()
 		;;
 	acelink,ew-7886cax|\
 	tplink,eap683-lr)
-		ucidef_set_interface_lan "eth0" "dhcp"
+		ucidef_set_interface_lan "eth0" dhcp
 		;;
 	acer,predator-w6|\
 	acer,predator-w6d)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 game" eth1
-		;;
-	acer,predator-w6x-stock|\
-	acer,predator-w6x-ubootmod)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" eth1
 		;;
 	acer,vero-w6m)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" internet
@@ -55,7 +51,7 @@ mediatek_setup_interfaces()
 	asus,zenwifi-bt8|\
 	asus,zenwifi-bt8-ubootmod|\
 	buffalo,wsr-3000ax4p|\
-	cetron,ct3003|\
+	cetron,ct3003-stock|\
 	cetron,ct3003-ubootmod|\
 	cmcc,a10-stock|\
 	cmcc,a10-ubootmod|\
@@ -70,7 +66,7 @@ mediatek_setup_interfaces()
 	keenetic,kn-3711|\
 	keenetic,kn-3811|\
 	livinet,li320|\
-	livinet,zr-3020|\
+	livinet,zr-3020-stock|\
 	livinet,zr-3020-ubootmod|\
 	netis,n6-v2|\
 	netis,nx32u|\
@@ -81,9 +77,12 @@ mediatek_setup_interfaces()
 	routerich,be7200|\
 	tenbay,wr3000k|\
 	teralink,tl3020-256mb|\
-	tplink,tl-7dr7250-v1)
+	tplink,tl-7dr7250-v1|\
+	tplink,wma301-v2*)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
 		;;
+	acer,predator-w6x-stock|\
+	acer,predator-w6x-ubootmod|\
 	asus,tuf-ax4200|\
 	iptime,ax3000sm|\
 	iptime,ax7800m-6e|\
@@ -98,7 +97,7 @@ mediatek_setup_interfaces()
 	zbtlink,zbt-z8102ax|\
 	zbtlink,zbt-z8102ax-v2|\
 	zbtlink,zbt-z8106ax-s)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" "eth1"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" eth1
 		;;
 	zbtlink,zbt-z8106ax-t)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" "eth1 wwan"
@@ -161,14 +160,14 @@ mediatek_setup_interfaces()
 	huasifei,wh3000-pro-nand|\
 	wavlink,wl-wnt100x3|\
 	wavlink,wl-wnt100x3-ubootmod)
-		ucidef_set_interfaces_lan_wan eth0 eth1
+		ucidef_set_interfaces_lan_wan "eth0" eth1
 		;;
 	bazis,ax3000wm|\
 	cudy,m3000-v1|\
 	cudy,m3000-v1-ubootmod|\
 	cudy,m3000-v2-yt8821|\
 	cudy,m3000-v2-yt8821-ubootmod|\
-	cudy,tr3000-256mb-v1|\
+	cudy,tr3000-v1-256mb|\
 	cudy,tr3000-v1|\
 	cudy,tr3000-v1-ubootmod|\
 	glinet,gl-mt2500|\
@@ -179,7 +178,7 @@ mediatek_setup_interfaces()
 	glinet,gl-xe3000|\
 	openembed,som7981|\
 	openwrt,one)
-		ucidef_set_interfaces_lan_wan eth1 eth0
+		ucidef_set_interfaces_lan_wan "eth1" eth0
 		;;
 	dlink,aquila-pro-ai-e30-a1|\
 	netis,eap930-v1)
@@ -201,7 +200,7 @@ mediatek_setup_interfaces()
 		;;
 	keenetic,kn-1812|\
 	netcraze,nc-1812)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4 lan5" "wan"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4 lan5" wan
 		;;
 	mediatek,mt7986a-rfb)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4 lan6" "eth1 wan"
@@ -220,11 +219,14 @@ mediatek_setup_interfaces()
 	mercusys,mr90x-v1-ubi)
 		ucidef_set_interfaces_lan_wan "lan0 lan1 lan2" eth1
 		;;
+	supergateway,s20p)
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4 lan5 lan6" eth1
+		;;
 	tenda,be12-pro)
 		ucidef_set_interfaces_lan_wan "lan3 lan4 lan5 eth1" eth2
 		;;
 	tplink,fr365-v1)
-		ucidef_set_interfaces_lan_wan "port1 port3 port4 port5 port6" "port2"
+		ucidef_set_interfaces_lan_wan "port1 port3 port4 port5 port6" port2
 		;;
 	tplink,tl-xdr6086|\
 	wavlink,wl-wn551x3|\
@@ -243,11 +245,18 @@ mediatek_setup_interfaces()
 	tplink,re6000xd)
 		ucidef_set_interface_lan "lan1 lan2 eth1"
 		;;
+	supergateway,s20l|\
+	supergateway,s20m|\
 	tplink,tl-7dr7230-v1|\
 	tplink,tl-7dr7230-v2)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" wan
 		;;
-	xiaomi,mi-router-ax3000t|\
+	tplink,tl-7dr7299-v1)
+		ucidef_add_switch "switch0" \
+			"1:lan:3" "2:lan:4" "3:lan:5" "4:lan:6" "5:lan:7" "0u@eth2"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 eth2" "eth1"
+		;;
+	xiaomi,mi-router-ax3000t-stock|\
 	xiaomi,mi-router-ax3000t-ubootmod|\
 	xiaomi,mi-router-wr30u-stock|\
 	xiaomi,mi-router-wr30u-ubootmod|\
@@ -259,7 +268,7 @@ mediatek_setup_interfaces()
 		ucidef_set_interface_lan "lan1 lan2"
 		;;
 	*)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" wan
+		echo "Unsupported hardware. Network interfaces not initialized"
 		;;
 	esac
 }
@@ -274,8 +283,8 @@ mediatek_setup_macs()
 	case $board in
 	airpi,ap3000m)
 		base_mac=$(macaddr_generate_from_mmc_cid mmcblk0)
-		lan_mac="$base_mac"
-		wan_mac="$(macaddr_add "$base_mac" 1)"
+		lan_mac=$base_mac
+		wan_mac=$(macaddr_add "$base_mac" 1)
 		;;
 	acer,predator-w6|\
 	acer,predator-w6d|\
@@ -295,7 +304,7 @@ mediatek_setup_macs()
 	bananapi,bpi-r4-lite)
 		wan_mac=$(macaddr_add $(cat /sys/class/net/eth0/address) 1)
 		;;
-	h3c,magic-nx30-pro)
+	h3c,magic-nx30-pro-ubootmod)
 		wan_mac=$(mtd_get_mac_ascii pdt_data_1 ethaddr)
 		lan_mac=$(macaddr_add "$wan_mac" 1)
 		label_mac=$wan_mac
@@ -346,9 +355,9 @@ mediatek_setup_macs()
 		;;
 	tplink,fr365-v1)
 		lan_mac=$(strings /dev/mtd11 | grep 'option macaddr' | awk -F"'" '{print $2}')
-		wan_mac="$(macaddr_add $lan_mac 1)"
+		wan_mac=$(macaddr_add $lan_mac 1)
 		;;
-	xiaomi,mi-router-ax3000t|\
+	xiaomi,mi-router-ax3000t-stock|\
 	xiaomi,mi-router-ax3000t-ubootmod|\
 	xiaomi,mi-router-wr30u-stock|\
 	xiaomi,mi-router-wr30u-ubootmod|\

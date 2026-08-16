@@ -5,7 +5,7 @@
 
 / {
 	model = "Cetron CT3003 (stock layout)";
-	compatible = "cetron,ct3003", "mediatek,mt7981";
+	compatible = "cetron,ct3003-stock", "mediatek,mt7981";
 };
 
 &partitions {

@@ -219,7 +219,8 @@ TARGET_DEVICES += acer_predator-w6d
 
 define Device/acer_predator-w6x-stock
   DEVICE_VENDOR := Acer
-  DEVICE_MODEL := Predator Connect W6x (Stock Layout)
+  DEVICE_MODEL := Predator Connect W6x
+  DEVICE_VARIANT := (stock layout)
   DEVICE_DTS := mt7986a-acer-predator-w6x-stock
   SUPPORTED_DEVICES += acer,predator-w6x
   DEVICE_DTS_DIR := ../dts
@@ -236,7 +237,8 @@ TARGET_DEVICES += acer_predator-w6x-stock
 
 define Device/acer_predator-w6x-ubootmod
   DEVICE_VENDOR := Acer
-  DEVICE_MODEL := Predator Connect W6x (OpenWrt U-Boot Layout)
+  DEVICE_MODEL := Predator Connect W6x
+  DEVICE_VARIANT := (OpenWrt U-Boot layout)
   DEVICE_DTS := mt7986a-acer-predator-w6x-ubootmod
   DEVICE_DTS_DIR := ../dts
   DEVICE_PACKAGES := kmod-usb3 kmod-leds-ws2812b kmod-mt7915e kmod-mt7986-firmware mt7986-wo-firmware automount
@@ -568,7 +570,7 @@ TARGET_DEVICES += asus_zenwifi-bt8
 define Device/asus_zenwifi-bt8-ubootmod
   DEVICE_VENDOR := ASUS
   DEVICE_MODEL := ZenWiFi BT8
-  DEVICE_VARIANT := U-Boot mod
+  DEVICE_VARIANT := (OpenWrt U-Boot layout)
   DEVICE_DTS := mt7988d-asus-zenwifi-bt8-ubootmod
   DEVICE_DTS_DIR := ../dts
   DEVICE_DTS_LOADADDR := 0x45f00000
@@ -883,11 +885,11 @@ define Device/buffalo_wsr-6000ax8
 endef
 TARGET_DEVICES += buffalo_wsr-6000ax8
 
-define Device/cetron_ct3003
+define Device/cetron_ct3003-stock
   DEVICE_VENDOR := Cetron
   DEVICE_MODEL := CT3003
   DEVICE_VARIANT := (stock layout)
-  DEVICE_DTS := mt7981b-cetron-ct3003
+  DEVICE_DTS := mt7981b-cetron-ct3003-stock
   DEVICE_DTS_DIR := ../dts
   SUPPORTED_DEVICES += cetron,ct3003-stock mediatek,mt7981-spim-snand-rfb
   DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware
@@ -900,7 +902,7 @@ define Device/cetron_ct3003
   IMAGES += factory.bin
   IMAGE/factory.bin := $$(IMAGE/sysupgrade.bin) | cetron-header rd30 CT3003
 endef
-TARGET_DEVICES += cetron_ct3003
+TARGET_DEVICES += cetron_ct3003-stock
 
 define Device/cetron_ct3003-ubootmod
   DEVICE_VENDOR := Cetron
@@ -1159,10 +1161,6 @@ define Device/comfast_cf-xr186
   DEVICE_DTS_DIR := ../dts
   SUPPORTED_DEVICES += cf-xr186
   DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware
-  KERNEL := kernel-bin | lzma | \
-	fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
-  KERNEL_INITRAMFS := kernel-bin | lzma | \
-	fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd
   UBINIZE_OPTS := -E 5
   BLOCKSIZE := 128k
   PAGESIZE := 2048
@@ -1408,11 +1406,11 @@ define Device/cudy_re3000-v1
 endef
 TARGET_DEVICES += cudy_re3000-v1
 
-define Device/cudy_tr3000-256mb-v1
+define Device/cudy_tr3000-v1-256mb
   DEVICE_VENDOR := Cudy
   DEVICE_MODEL := TR3000
-  DEVICE_VARIANT := 256mb v1
-  DEVICE_DTS := mt7981b-cudy-tr3000-256mb-v1
+  DEVICE_VARIANT := v1 (256M)
+  DEVICE_DTS := mt7981b-cudy-tr3000-v1-256mb
   DEVICE_DTS_DIR := ../dts
   SUPPORTED_DEVICES += R103
   UBINIZE_OPTS := -E 5
@@ -1423,7 +1421,7 @@ define Device/cudy_tr3000-256mb-v1
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
   DEVICE_PACKAGES := kmod-usb3 kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware automount
 endef
-TARGET_DEVICES += cudy_tr3000-256mb-v1
+TARGET_DEVICES += cudy_tr3000-v1-256mb
 
 define Device/cudy_tr3000-v1
   DEVICE_VENDOR := Cudy
@@ -1994,11 +1992,11 @@ define Device/globitel_bt-r320
 endef
 TARGET_DEVICES += globitel_bt-r320
 
-define Device/h3c_magic-nx30-pro
+define Device/h3c_magic-nx30-pro-ubootmod
   DEVICE_VENDOR := H3C
   DEVICE_MODEL := Magic NX30 Pro
   DEVICE_VARIANT := (OpenWrt U-Boot layout)
-  DEVICE_DTS := mt7981b-h3c-magic-nx30-pro
+  DEVICE_DTS := mt7981b-h3c-magic-nx30-pro-ubootmod
   DEVICE_DTS_DIR := ../dts
   UBINIZE_OPTS := -E 5
   BLOCKSIZE := 128k
@@ -2018,7 +2016,7 @@ define Device/h3c_magic-nx30-pro
   ARTIFACT/preloader.bin := mt7981-bl2 spim-nand-ddr3
   ARTIFACT/bl31-uboot.fip := mt7981-bl31-uboot h3c_magic-nx30-pro
 endef
-TARGET_DEVICES += h3c_magic-nx30-pro
+TARGET_DEVICES += h3c_magic-nx30-pro-ubootmod
 
 define Device/hiveton_h5000m
   DEVICE_VENDOR := Hiveton
@@ -2442,11 +2440,11 @@ define Device/konka_komi-a31
 endef
 TARGET_DEVICES += konka_komi-a31
 
-define Device/livinet_zr-3020
+define Device/livinet_zr-3020-stock
   DEVICE_VENDOR := Livinet
   DEVICE_MODEL := ZR-3020
   DEVICE_VARIANT := (stock layout)
-  DEVICE_DTS := mt7981b-livinet-zr-3020
+  DEVICE_DTS := mt7981b-livinet-zr-3020-stock
   DEVICE_DTS_DIR := ../dts
   DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware
   SUPPORTED_DEVICES += mediatek,mt7981-spim-snand-gsw-rfb
@@ -2459,7 +2457,7 @@ define Device/livinet_zr-3020
   IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
 endef
-TARGET_DEVICES += livinet_zr-3020
+TARGET_DEVICES += livinet_zr-3020-stock
 
 define Device/livinet_zr-3020-ubootmod
   DEVICE_VENDOR := Livinet
@@ -3211,7 +3209,8 @@ TARGET_DEVICES += routerich_ax3000
 
 define Device/routerich_ax3000-ubootmod
   DEVICE_VENDOR := Routerich
-  DEVICE_MODEL := AX3000 (OpenWrt U-Boot layout)
+  DEVICE_MODEL := AX3000
+  DEVICE_VARIANT := (OpenWrt U-Boot layout)
   DEVICE_DTS := mt7981b-routerich-ax3000-ubootmod
   DEVICE_DTS_DIR := ../dts
   UBINIZE_OPTS := -E 5
@@ -3597,12 +3596,25 @@ define Device/tplink_tl-7dr7250-v1
   DEVICE_MODEL := TL-7DR7250
   DEVICE_VARIANT := v1
   DEVICE_DTS := mt7988d-tplink-tl-7dr7250-v1
+  DEVICE_PACKAGES += kmod-phy-airoha-en8811h airoha-en8811h-firmware
   ARTIFACT/preloader.bin := mt7988-bl2 spim-nand-ddr4
   ARTIFACT/bl31-uboot.fip := mt7988-bl31-uboot tplink_tl-7dr7250-v1
   $(call Device/tplink_tl-7dr-common)
-  DEVICE_PACKAGES += kmod-phy-airoha-en8811h airoha-en8811h-firmware
 endef
 TARGET_DEVICES += tplink_tl-7dr7250-v1
+
+define Device/tplink_tl-7dr7299-v1
+  DEVICE_MODEL := TL-7DR7299
+  DEVICE_VARIANT := v1
+  DEVICE_DTS := mt7988a-tplink-tl-7dr7299-v1
+  DEVICE_DTS_LOADADDR := 0x47f00000
+  DEVICE_PACKAGES := kmod-phy-rtl8261d kmod-switch-rtl837x swconfig kmod-i2c-gpio kmod-sfp kmod-usb3 automount
+  KERNEL_LOADADDR := 0x48000000
+  ARTIFACT/preloader.bin := mt7988-bl2 spim-nand-ddr4
+  ARTIFACT/bl31-uboot.fip := mt7988-bl31-uboot tplink_tl-7dr7299-v1
+  $(call Device/tplink_tl-7dr-common)
+endef
+TARGET_DEVICES += tplink_tl-7dr7299-v1
 
 define Device/tplink_tl-xdr-common
   DEVICE_VENDOR := TP-Link
@@ -3825,11 +3837,11 @@ define Device/widelantech_wap430x
 endef
 TARGET_DEVICES += widelantech_wap430x
 
-define Device/xiaomi_mi-router-ax3000t
+define Device/xiaomi_mi-router-ax3000t-stock
   DEVICE_VENDOR := Xiaomi
   DEVICE_MODEL := Mi Router AX3000T
   DEVICE_VARIANT := (stock layout)
-  DEVICE_DTS := mt7981b-xiaomi-mi-router-ax3000t
+  DEVICE_DTS := mt7981b-xiaomi-mi-router-ax3000t-stock
   DEVICE_DTS_DIR := ../dts
   UBINIZE_OPTS := -E 5
   BLOCKSIZE := 128k
@@ -3843,7 +3855,7 @@ endif
 endif
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
 endef
-TARGET_DEVICES += xiaomi_mi-router-ax3000t
+TARGET_DEVICES += xiaomi_mi-router-ax3000t-stock
 
 define Device/xiaomi_mi-router-ax3000t-ubootmod
   DEVICE_VENDOR := Xiaomi
@@ -4240,3 +4252,73 @@ ifneq ($(CONFIG_TARGET_ROOTFS_INITRAMFS),)
 endif
 endef
 TARGET_DEVICES += zyxel_wx5600-t0-ubootmod
+
+define Device/supergateway_s20-common
+  DEVICE_VENDOR := Super Gateway
+  DEVICE_DTS_DIR := ../dts
+  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7916-firmware kmod-mt7986-firmware mt7986-wo-firmware \
+    kmod-usb3 kmod-mmc kmod-nvme kmod-fs-f2fs kmod-fs-ext4 kmod-fs-vfat \
+    mkf2fs f2fsck e2fsprogs blkid blockdev losetup automount
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+
+define Device/supergateway_s20l
+  $(call Device/supergateway_s20-common)
+  DEVICE_MODEL := S20L
+  DEVICE_DTS := mt7986a-supergateway-s20l
+endef
+TARGET_DEVICES += supergateway_s20l
+
+define Device/supergateway_s20m
+  $(call Device/supergateway_s20-common)
+  DEVICE_MODEL := S20M
+  DEVICE_DTS := mt7986a-supergateway-s20m
+  DEVICE_PACKAGES += -kmod-mt76 -kmod-mt76-connac -kmod-mt76-core -kmod-mt7915e \
+    -kmod-mt7915-firmware -kmod-mt7916-firmware -kmod-mt7986-firmware -mt7986-wo-firmware
+endef
+TARGET_DEVICES += supergateway_s20m
+
+define Device/supergateway_s20p
+  $(call Device/supergateway_s20-common)
+  DEVICE_MODEL := S20P
+  DEVICE_DTS := mt7986a-supergateway-s20p
+endef
+TARGET_DEVICES += supergateway_s20p
+
+define Device/tplink_wma301-common
+  DEVICE_VENDOR := TP-Link
+  DEVICE_MODEL := WMA301
+  DEVICE_DTS_DIR := ../dts
+  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware
+  UBINIZE_OPTS := -E 5
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_IN_UBI := 1
+  UBOOTENV_IN_UBI := 1
+  IMAGES := sysupgrade.itb
+  KERNEL_INITRAMFS_SUFFIX := -recovery.itb
+  KERNEL := kernel-bin | gzip
+  KERNEL_INITRAMFS := kernel-bin | lzma | \
+	fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
+  IMAGE/sysupgrade.itb := append-kernel | \
+	fit gzip $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | append-metadata
+  ARTIFACTS := preloader.bin bl31-uboot.fip
+  ARTIFACT/preloader.bin := mt7981-bl2 wma301-v2-ddr3
+endef
+TARGET_DEVICES += tplink_wma301-common
+
+define Device/tplink_wma301-v2-ubootmod
+  DEVICE_VARIANT := v2
+  DEVICE_DTS := mt7981b-tplink-wma301-v2-ubootmod
+  ARTIFACT/bl31-uboot.fip := mt7981-bl31-uboot tplink_wma301-v2
+  $(call Device/tplink_wma301-common)
+endef
+TARGET_DEVICES += tplink_wma301-v2-ubootmod
+
+define Device/tplink_wma301-v2-256m-ubootmod
+  DEVICE_VARIANT := v2 (256M / OpenWrt U-Boot layout)
+  DEVICE_DTS := mt7981b-tplink-wma301-v2-256m-ubootmod
+  ARTIFACT/bl31-uboot.fip := mt7981-bl31-uboot tplink_wma301-v2-256m
+  $(call Device/tplink_wma301-common)
+endef
+TARGET_DEVICES += tplink_wma301-v2-256m-ubootmod

@@ -85,7 +85,7 @@ xiaomi_initial_setup()
 
 	local board=$(board_name)
 	case "$board" in
-	xiaomi,mi-router-ax3000t|\
+	xiaomi,mi-router-ax3000t-stock|\
 	xiaomi,mi-router-wr30u-stock)
 		fw_setenv mtdparts "nmbm0:1024k(bl2),256k(Nvram),256k(Bdata),2048k(factory),2048k(fip),256k(crash),256k(crash_log),34816k(ubi),34816k(ubi1),32768k(overlay),12288k(data),256k(KF)"
 		;;
@@ -161,7 +161,7 @@ platform_do_upgrade() {
 	cudy,wr3000p-v1-ubootmod|\
 	gatonetworks,gdsp|\
 	globitel,bt-r320|\
-	h3c,magic-nx30-pro|\
+	h3c,magic-nx30-pro-ubootmod|\
 	imou,hx21|\
 	jcg,q30-pro|\
 	jdcloud,re-cp-03|\
@@ -189,10 +189,12 @@ platform_do_upgrade() {
 	tplink,tl-7dr7230-v1|\
 	tplink,tl-7dr7230-v2|\
 	tplink,tl-7dr7250-v1|\
+	tplink,tl-7dr7299-v1|\
 	tplink,tl-xdr4288|\
 	tplink,tl-xdr6086|\
 	tplink,tl-xdr6088|\
 	tplink,tl-xtr8488|\
+	tplink,wma301-v2*|\
 	wavlink,wl-wnt100x3-ubootmod|\
 	xiaomi,mi-router-ax3000t-ubootmod|\
 	xiaomi,redmi-router-ax6000-ubootmod|\
@@ -220,7 +222,8 @@ platform_do_upgrade() {
 	smartrg,sdg-8632|\
 	smartrg,sdg-8733|\
 	smartrg,sdg-8733a|\
-	smartrg,sdg-8734)
+	smartrg,sdg-8734|\
+	supergateway,s20*)
 		CI_KERNPART="kernel"
 		CI_ROOTPART="rootfs"
 		emmc_do_upgrade "$1"
@@ -264,7 +267,7 @@ platform_do_upgrade() {
 		nand_do_upgrade "$1"
 		;;
 	buffalo,wsr-3000ax4p|\
-	xiaomi,mi-router-ax3000t|\
+	xiaomi,mi-router-ax3000t-stock|\
 	xiaomi,mi-router-wr30u-stock|\
 	xiaomi,redmi-router-ax6000-stock)
 		CI_KERN_UBIPART="ubi_kernel"
@@ -415,8 +418,8 @@ platform_check_image() {
 	cudy,wr3000p-v1-ubootmod|\
 	gatonetworks,gdsp|\
 	globitel,bt-r320|\
-	h3c,magic-nx30-pro|\
-	imou,lc-hx3001|\
+	h3c,magic-nx30-pro-ubootmod|\
+	imou,hx21|\
 	jcg,q30-pro|\
 	jdcloud,re-cp-03|\
 	konka,komi-a31|\
@@ -426,6 +429,8 @@ platform_check_image() {
 	mercusys,mr90x-v1-ubi|\
 	nokia,ea0326gmp|\
 	netis,eap930-v1|\
+	netis,nx30v2|\
+	netis,nx31|\
 	netis,n6-v2|\
 	netis,nx32u|\
 	openwrt,one|\
@@ -434,20 +439,25 @@ platform_check_image() {
 	qihoo,360t7|\
 	qihoo,360t7-ubi|\
 	routerich,ax3000-ubootmod|\
+	routerich,be7200|\
+	snr,snr-cpe-ax2|\
 	teralink,tl3020-256mb|\
 	tplink,be450-ubi|\
 	tplink,tl-7dr7230-v1|\
 	tplink,tl-7dr7230-v2|\
 	tplink,tl-7dr7250-v1|\
+	tplink,tl-7dr7299-v1|\
 	tplink,tl-xdr4288|\
 	tplink,tl-xdr6086|\
 	tplink,tl-xdr6088|\
 	tplink,tl-xtr8488|\
+	tplink,wma301-v2*|\
 	wavlink,wl-wnt100x3-ubootmod|\
 	xiaomi,mi-router-ax3000t-ubootmod|\
 	xiaomi,redmi-router-ax6000-ubootmod|\
 	xiaomi,mi-router-wr30u-ubootmod|\
-	zyxel,ex5601-t0-ubootmod)
+	zyxel,ex5601-t0-ubootmod|\
+	zyxel,wx5600-t0-ubootmod)
 		fit_check_image "$1"
 		return $?
 		;;
@@ -499,6 +509,7 @@ platform_copy_config() {
 	smartrg,sdg-8733|\
 	smartrg,sdg-8733a|\
 	smartrg,sdg-8734|\
+	supergateway,s20*|\
 	ubnt,unifi-6-plus)
 		emmc_copy_config
 		;;
@@ -550,7 +561,7 @@ platform_pre_upgrade() {
 	jiorouter,ax6000-jidu6101)
 		jiorouter_initial_setup
 		;;
-	xiaomi,mi-router-ax3000t|\
+	xiaomi,mi-router-ax3000t-stock|\
 	xiaomi,mi-router-wr30u-stock|\
 	xiaomi,redmi-router-ax6000-stock)
 		xiaomi_initial_setup

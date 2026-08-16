@@ -5,7 +5,7 @@
 
 / {
 	model = "Livinet ZR-3020 (stock layout)";
-	compatible = "livinet,zr-3020", "mediatek,mt7981";
+	compatible = "livinet,zr-3020-stock", "mediatek,mt7981";
 };
 
 &partitions {

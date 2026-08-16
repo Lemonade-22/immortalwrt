@@ -3,7 +3,7 @@ set_preinit_iface() {
 	bazis,ax3000wm|\
 	cudy,m3000-v1|\
 	cudy,m3000-v2-yt8821|\
-	cudy,tr3000-256mb-v1|\
+	cudy,tr3000-v1-256mb|\
 	cudy,tr3000-v1|\
 	cudy,tr3000-v1-ubootmod|\
 	glinet,gl-mt2500|\
@@ -29,7 +29,7 @@ set_preinit_iface() {
 		ip link set lan up
 		ifname=lan
 		;;
-	xiaomi,mi-router-ax3000t|\
+	xiaomi,mi-router-ax3000t-stock|\
 	xiaomi,mi-router-ax3000t-ubootmod|\
 	xiaomi,mi-router-wr30u-stock|\
 	xiaomi,mi-router-wr30u-ubootmod|\
